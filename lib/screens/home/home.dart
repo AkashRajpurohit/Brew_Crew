@@ -1,6 +1,10 @@
+import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +17,9 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
-            onPressed: () {},
+            onPressed: () async {
+              await _auth.signOut();
+            },
             iconSize: 26.0,
           )
         ],
