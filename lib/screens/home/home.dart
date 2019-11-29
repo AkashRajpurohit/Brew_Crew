@@ -10,24 +10,47 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showSettingsPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: Text("Bottom Sheet"),
+            );
+          });
+    }
+
     return StreamProvider<List<Brew>>.value(
       value: DatabaseService().brews,
       child: Scaffold(
         appBar: AppBar(
-        title: Text("Brew Crew"),
-        elevation: 0.0,
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: () async {
-              await _auth.signOut();
-            },
-            iconSize: 26.0,
-          )
-        ],
-      ),
-      body: BrewList(),
+          title: Text("Brew Crew"),
+          elevation: 0.0,
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              iconSize: 26.0,
+            )
+          ],
+        ),
+        body: BrewList(),
+        floatingActionButton: Container(
+          height: 62.0,
+          width: 62.0,
+          child: FittedBox(
+            child: FloatingActionButton(
+              tooltip: "Change your preferences",
+              child: Icon(Icons.settings, size: 28.0),
+              backgroundColor: Theme.of(context).primaryColor,
+              onPressed: () => _showSettingsPanel(),
+            ),
+          ),
+        ),
       ),
     );
   }
