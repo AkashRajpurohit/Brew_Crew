@@ -1,5 +1,6 @@
 import 'package:brew_crew/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
 
@@ -30,6 +31,18 @@ class AuthService {
   // Sign in with email & password
 
   // Register with email & password
+  Future registerWithEmailAndPassword({ @required String email, @required String password}) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+
+      FirebaseUser user = result.user;
+
+      return _userFromFirbaseUser(user);
+    } catch(e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // Sign out
   Future signOut() async {
