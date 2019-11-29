@@ -27,7 +27,7 @@ class _SettingsFormState extends State<SettingsForm> {
           SizedBox(height: 20.0),
           TextFormField(
             decoration: textInputDecoration.copyWith(
-                labelText: 'Enter Your Name',
+                labelText: 'Your Name',
                 prefixIcon: Icon(Icons.person_outline)),
             validator: (val) => val.isEmpty ? 'Please enter a name' : null,
             onChanged: (val) => setState(() => _currentName = val),
