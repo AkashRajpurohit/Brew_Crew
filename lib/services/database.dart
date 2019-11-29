@@ -5,7 +5,7 @@ class DatabaseService {
 
   final String uid;
 
-  DatabaseService({ @required this.uid });
+  DatabaseService({ this.uid });
 
   // collection reference
   final CollectionReference brewCollection = Firestore.instance.collection('brews');
@@ -21,5 +21,10 @@ class DatabaseService {
       print(e.toString());
       return null;
     }
+  }
+
+  // Get brews Stream
+  Stream<QuerySnapshot> get brews {
+    return brewCollection.snapshots();
   }
 }
