@@ -1,12 +1,12 @@
 import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
 
@@ -19,7 +19,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
-        title: Text("Sign in to Brew Crew"),
+        title: Text("Sign up to Brew Crew"),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -51,7 +51,7 @@ class _SignInState extends State<SignIn> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                   child: Text(
-                    'Sign In',
+                    'Register',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0
