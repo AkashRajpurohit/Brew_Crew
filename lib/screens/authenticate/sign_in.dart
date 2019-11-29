@@ -1,5 +1,6 @@
 import 'package:brew_crew/services/auth.dart';
 import 'package:brew_crew/shared/constants.dart';
+import 'package:brew_crew/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -16,6 +17,7 @@ class _SignInState extends State<SignIn> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -45,7 +47,7 @@ class _SignInState extends State<SignIn> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Form(
+        child: loading ? Loading() : Form(
           key: _formKey,
           child: Column(
             children: <Widget> [
@@ -78,10 +80,15 @@ class _SignInState extends State<SignIn> {
               RaisedButton(
                 onPressed: () async {
                   if(_formKey.currentState.validate()) {
+                    setState(() => loading = true);
+
                     dynamic result = await _auth.signInWithEmailAndPassword(email: email, password: password);
 
                     if(result == null) {
-                      setState(() => error = 'Could not sign in with those credentials.');
+                      setState(() {
+                        loading = false;
+                        error = 'Could not sign in with those credentials.';
+                      });
                     }
                   }
                 },
