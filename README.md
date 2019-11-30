@@ -4,7 +4,6 @@ A new Flutter and Firebase project developed when I started learning integrating
 
 # App Screenshots
 
-# Screenshots
 Register     	      	     |  Sign In
 :-------------------------:|:-------------------------:
 ![Register](./mockups/Register.png)  |  ![Sign-In](./mockups/Sign-In.png)
